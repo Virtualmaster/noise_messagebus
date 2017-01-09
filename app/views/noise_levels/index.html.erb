@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Noise Levels</h1>
+
+<div id="highcharts_container"></div>
+
+<button id="run-script">Start!</button>
+
+<script>
+  $("#run-script").on("click", function() {
+    $.ajax({
+      type: "GET",
+      url: "/noise_levels/run_script"
+    })
+  })
+</script>

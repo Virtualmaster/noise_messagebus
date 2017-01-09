@@ -1,0 +1,1 @@
+MessageBus.configure(backend: :memory, logger: false)
