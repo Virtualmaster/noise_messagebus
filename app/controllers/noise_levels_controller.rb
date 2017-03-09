@@ -1,5 +1,6 @@
 class NoiseLevelsController < ApplicationController
   before_action :set_noise_level, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /noise_levels
   # GET /noise_levels.json
@@ -24,9 +25,17 @@ class NoiseLevelsController < ApplicationController
   # POST /noise_levels
   # POST /noise_levels.json
   def create
+    s = "hhhh" * 1000
     @noise_level = NoiseLevel.new(noise_level_params)
-    MessageBus.publish "/noise_level", @noise_level.value
-    render plain: 'OK'
+    MessageBus.publish "/noise_level", s
+    head :ok
+  end
+
+  def listen_to
+    MessageBus.subscribe "/noise_level" do |msg|
+      puts "THIS IS THE MESSAGE#{msg}"
+    end
+    head :ok
   end
 
   def run_script

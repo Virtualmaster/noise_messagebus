@@ -4,8 +4,8 @@ import requests
 import re
 from time import sleep
 
-duration = 60  # seconds
-delay = 0.05
+duration = 600  # seconds
+delay = 3
 http_target = "http://localhost:3000/noise_levels"
 p = re.compile('(?<=<meta name="csrf-token" content=").*(?=")')
 cookies = []
